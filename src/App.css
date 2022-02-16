@@ -3,7 +3,7 @@
 }
 
 body {
-  padding-top: 4rem; /* Faz com que o conteudo fique abaixo do menu */
+  padding-top: 4rem; /* Faz com que o conteudo fique abaixo do menu, funciona pois deixamos a nav com heigth de 4 rem*/
   margin: 0px;
   color: #333;
   --type-first: Helvetica, Arial, sans-serif;
