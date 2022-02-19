@@ -17,7 +17,7 @@ const useForm = (type) => {
     if (value.length === 0) {
       setError('Preencha um valor.');
       return false;
-    } else if (types[type] && types[type].regex.test(value)) {
+    } else if (types[type] && !types[type].regex.test(value)) {
       setError(types[type].message);
       /* O types[type] acessará a string que recebermos ao chamarmos o useForm, nesse caso será 'e-mail' quando for username */
       return false;
