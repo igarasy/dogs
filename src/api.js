@@ -5,7 +5,7 @@ export function TOKEN_POST(body) {
     url: API_URL + '/jwt-auth/v1/token',
     options: {
       method: 'POST',
-      header: {
+      headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
@@ -18,8 +18,8 @@ export function USER_GET(token) {
     url: API_URL + '/api/user',
     options: {
       method: 'GET',
-      header: {
-        Authorization: 'Bearer' + token,
+      headers: {
+        Authorization: 'Bearer ' + token,
       },
     },
   };
