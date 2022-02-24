@@ -7,7 +7,7 @@ const PhotoDelete = ({ id }) => {
   const { loading, request } = useFetch();
 
   async function handleDelete() {
-    const confirm = window.confirm('Tem certeza que deseja');
+    const confirm = window.confirm('Tem certeza que deseja deletar?');
     if (confirm) {
       const { url, options } = PHOTO_DELETE(id);
       const { response } = await request(url, options);

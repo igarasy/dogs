@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './UserPhotoPost.module.css';
-import Input from '../Forms/Input';
-import Button from '../Forms/Button';
 import useForm from '../../Hooks/useForm';
 import useFetch from '../../Hooks/useFetch';
+import Input from '../Forms/Input';
+import Button from '../Forms/Button';
 import Error from '../Helper/Error';
-import { PHOTO_POST, TOKEN_POST } from '../../api';
+import { PHOTO_POST } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 const UserPhotoPost = () => {
@@ -24,9 +24,9 @@ const UserPhotoPost = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('img', img.raw);
-    formData.append('nome', nome.raw);
-    formData.append('peso', peso.raw);
-    formData.append('idade', idade.raw);
+    formData.append('nome', nome.value);
+    formData.append('peso', peso.value);
+    formData.append('idade', idade.value);
 
     const token = window.localStorage.getItem('token');
     const { url, options } = PHOTO_POST(formData, token);
@@ -39,6 +39,7 @@ const UserPhotoPost = () => {
       raw: target.files[0],
     });
   }
+
   return (
     <section className={`${styles.photoPost} animeLeft`}>
       <form onSubmit={handleSubmit}>
