@@ -1,22 +1,22 @@
-import React from 'react';
-import styles from './FeedModal.module.css';
-import useFetch from '../../Hooks/useFetch';
-import { PHOTO_GET } from '../../api';
-import Error from '../Helper/Error';
-import Loading from '../Helper/Loading';
-import PhotoContent from '../Photo/PhotoContent';
+import React from 'react'
+import styles from './FeedModal.module.css'
+import Error from '../Helper/Error'
+import Loading from '../Helper/Loading'
+import PhotoContent from '../Photo/PhotoContent'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPhoto } from '../../store/photo'
 
 const FeedModal = ({ photo, setModalPhoto }) => {
-  const { data, error, loading, request } = useFetch();
+  const { loading, error, data } = useSelector((state) => state.photo)
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
-    const { url, options } = PHOTO_GET(photo.id);
-    request(url, options);
-  }, [photo, request]);
+    dispatch(fetchPhoto(photo.id))
+  }, [dispatch, photo])
 
   function handleOutsideClick(event) {
     if (event.target === event.currentTarget) {
-      setModalPhoto(null);
+      setModalPhoto(null)
     }
   }
 
@@ -24,9 +24,9 @@ const FeedModal = ({ photo, setModalPhoto }) => {
     <div className={styles.modal} onClick={handleOutsideClick}>
       {error && <Error error={error} />}
       {loading && <Loading />}
-      {data && <PhotoContent data={data} />}
+      {data && <PhotoContent />}
     </div>
-  );
-};
+  )
+}
 
-export default FeedModal;
+export default FeedModal
